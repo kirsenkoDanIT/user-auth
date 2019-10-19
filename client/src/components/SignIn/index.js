@@ -44,7 +44,6 @@ export const SignIn = connect(
   return (
     <Container component="main" maxWidth="xs">
       {isAuth ? <Redirect to="/" /> : null}
-      {message ? console.log(message) : null}
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
