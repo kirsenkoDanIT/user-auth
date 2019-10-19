@@ -44,7 +44,6 @@ export const SignUp = connect(
   return (
     <Container component="main" maxWidth="xs">
       {isAuth ? <Redirect to="/" /> : null}
-      {message ? console.log(message) : null}
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -52,7 +51,6 @@ export const SignUp = connect(
         </Avatar>
         <Typography component="h1" variant="h5">
           {message ? message : 'Sign up'}
-          {/* Sign up */}
         </Typography>
         <form
           className={classes.form}
