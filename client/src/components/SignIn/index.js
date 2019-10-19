@@ -1,5 +1,5 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { NavLink, Redirect } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -10,21 +10,58 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
 import { useStyles } from './styles';
+import { connect } from 'react-redux';
+import { login, clearErrors } from '../../store/actions';
 
-export default function SignIn() {
+const mapStateToProps = state => ({
+  isAuth: state.userReducer.isAuth,
+  message: state.userReducer.message
+});
+
+export const SignIn = connect(
+  mapStateToProps,
+  { login, clearErrors }
+)(props => {
   const classes = useStyles();
+
+  const { login, clearErrors, message, isAuth } = props;
+
+  const [user, setUser] = useState({
+    password: '',
+    email: ''
+  });
+  useEffect(() => {
+    clearErrors();
+  }, [clearErrors]);
+
+  const onChangeHandler = e => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value
+    });
+  };
 
   return (
     <Container component="main" maxWidth="xs">
+      {isAuth ? <Redirect to="/" /> : null}
+      {message ? console.log(message) : null}
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          {message ? message : 'Sign in'}
+          {/* Sign in */}
         </Typography>
-        <form className={classes.form} noValidate>
+        <form
+          className={classes.form}
+          noValidate
+          onSubmit={e => {
+            e.preventDefault();
+            login(user);
+          }}
+        >
           <TextField
             variant="outlined"
             margin="normal"
@@ -34,6 +71,7 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={onChangeHandler}
           />
           <TextField
             variant="outlined"
@@ -44,6 +82,7 @@ export default function SignIn() {
             label="Password"
             type="password"
             autoComplete="current-password"
+            onChange={onChangeHandler}
           />
           <Button
             type="submit"
@@ -65,4 +104,4 @@ export default function SignIn() {
       </div>
     </Container>
   );
-}
+});

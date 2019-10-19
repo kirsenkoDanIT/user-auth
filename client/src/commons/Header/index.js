@@ -5,10 +5,46 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-import { useStyles } from './styles';
+import { UserInfo } from './UserInfo';
 
-export default function ButtonAppBar() {
+import { useStyles } from './styles';
+import { connect } from 'react-redux';
+
+import { logout, clearErrors } from '../../store/actions';
+
+const mapStateToProps = state => ({
+  isAuth: state.userReducer.isAuth,
+  user: state.userReducer.user
+});
+
+export const ButtonAppBar = connect(
+  mapStateToProps,
+  { logout, clearErrors }
+)(props => {
   const classes = useStyles();
+  const { isAuth, logout, clearErrors, user } = props;
+
+  const AuthButton = () => {
+    return isAuth ? (
+      <React.Fragment>
+        <UserInfo user={user} />
+        <Button
+          color="inherit"
+          onClick={() => {
+            logout();
+          }}
+        >
+          Logout
+        </Button>
+      </React.Fragment>
+    ) : (
+      <Button color="inherit" onClick={() => clearErrors()}>
+        <NavLink className={classes.loginLink} to="/login">
+          Login
+        </NavLink>
+      </Button>
+    );
+  };
 
   return (
     <div className={classes.root}>
@@ -19,13 +55,9 @@ export default function ButtonAppBar() {
               Users
             </NavLink>
           </Typography>
-          <Button color="inherit">
-            <NavLink className={classes.loginLink} to="/login">
-              Login
-            </NavLink>
-          </Button>
+          <AuthButton />
         </Toolbar>
       </AppBar>
     </div>
   );
-}
+});

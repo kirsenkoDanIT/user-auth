@@ -14,5 +14,8 @@ export const useStyles = makeStyles(theme => ({
     textDecoration: 'none',
     fontWeight: '500',
     color: '#fff'
+  },
+  userInfo: {
+    padding: 5
   }
 }));

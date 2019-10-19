@@ -1,0 +1,20 @@
+export const REGISTRATION = 'REGISTRATION';
+export const REGISTRATION_FAIL = 'REGISTRATION_FAIL';
+export const REGISTRATION_SUCCESS = 'REGISTRATION_SUCCESS';
+
+export const LOGIN = 'LOGIN';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+
+export const LOGOUT = 'LOGOUT';
+
+export const FETCH_USER = 'FETCH_USER';
+export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS';
+export const FETCH_USER_FAIL = 'FETCH_USER_FAIL';
+
+export const FETCH_USERS = 'FETCH_USERS';
+export const FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS';
+
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+
+
