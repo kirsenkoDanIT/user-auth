@@ -124,4 +124,13 @@ router.get('/user', checkByToken, async (req, res) => {
   }
 });
 
+router.get('/users', async (req, res) => {
+  try {
+    const users = await User.find({}).select('-password');
+    res.json(users);
+  } catch (error) {
+    res.json(error);
+  }
+});
+
 module.exports = router;
