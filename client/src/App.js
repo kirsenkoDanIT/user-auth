@@ -9,6 +9,7 @@ import { SignUp } from './components/SignUp';
 import { SignIn } from './components/SignIn';
 import { ButtonAppBar } from './commons/Header';
 import { HomePage } from './components/HomePage';
+import { UserPage } from './components/UserPage';
 
 function App() {
   useEffect(() => {
@@ -23,6 +24,7 @@ function App() {
             <Route exact path="/" component={HomePage} />
             <Route path="/register" component={SignUp} />
             <Route path="/login" component={SignIn} />
+            <Route path="/user/:id" component={UserPage} />
           </Switch>
         </div>
       </Router>

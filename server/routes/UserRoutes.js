@@ -83,7 +83,7 @@ router.post('/login', async (req, res) => {
           { id: user._id },
           config.secretWord,
           {
-            expiresIn: 360000
+            expiresIn: 18060000
           },
           (err, token) => {
             if (err) throw err;

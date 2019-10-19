@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
+
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
@@ -10,7 +12,6 @@ import { connect } from 'react-redux';
 import { fetchUsers, clearErrors } from '../../store/actions';
 
 const mapStateToProps = state => ({
-  isAuth: state.userReducer.isAuth,
   users: state.userReducer.users
 });
 
@@ -20,7 +21,7 @@ export const HomePage = connect(
 )(props => {
   const classes = useStyles();
 
-  const { fetchUsers, clearErrors, isAuth, users } = props;
+  const { fetchUsers, clearErrors, users } = props;
   useEffect(() => {
     fetchUsers();
     clearErrors();
@@ -30,24 +31,28 @@ export const HomePage = connect(
     <Grid container className={classes.root} spacing={2}>
       <Grid item xs={12}>
         <Grid container justify="center" spacing={2}>
-          {users && isAuth ? (
-            users.map((value, index) => (
-              <Grid key={index} item>
-                <CardContent className={classes.card}>
-                  <Typography variant="h5" component="h2">
-                    {value.login}
-                  </Typography>
-                  <Typography variant="body2" component="p">
-                    {value.email}
-                  </Typography>
-                </CardContent>
-              </Grid>
-            ))
-          ) : (
-            <Typography component="h1" variant="h5">
-              You must be logged in to see other users
-            </Typography>
-          )}
+          {users
+            ? users.map((value, index) => (
+                <Grid item key={index}>
+                  <NavLink
+                    to={{
+                      pathname: `/user/${value._id}`,
+                      state: value
+                    }}
+                    className={classes.userLInk}
+                  >
+                    <CardContent className={classes.card}>
+                      <Typography variant="h5" component="h2">
+                        {value.login}
+                      </Typography>
+                      <Typography variant="body2" component="p">
+                        {value.email}
+                      </Typography>
+                    </CardContent>
+                  </NavLink>
+                </Grid>
+              ))
+            : null}
         </Grid>
       </Grid>
     </Grid>

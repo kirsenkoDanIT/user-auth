@@ -16,5 +16,9 @@ export const useStyles = makeStyles(theme => ({
   },
   pos: {
     marginBottom: 12
+  },
+  userLInk:{
+    textDecoration:'none',
+    color:'#000'
   }
 }));
