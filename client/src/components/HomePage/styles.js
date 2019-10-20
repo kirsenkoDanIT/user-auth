@@ -2,8 +2,9 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(theme => ({
   root: {
-    marginTop: 20,
-    flexGrow: 1
+    flexGrow: 1,
+    width:"100%",
+    margin:"0 auto"
   },
 
   card: {
