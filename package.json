@@ -6,12 +6,21 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "startAll": "concurrently \"cd server && npm run dev\" \"cd client && npm start\"",
-    "allModules": "concurrently \"cd server && npm i\" \"cd client && npm i\" \"npm i\""
+    "allModules": "concurrently \"cd server && npm i\" \"cd client && npm i\" \"npm i\"",
+    "start": "cd server && npm start",
+    "heroku-postbuild": "cd client && npm install && npm run build && cd '../server' && npm i"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kirsenkoDanIT/user-auth.git"
+  },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "bugs": {
+    "url": "https://github.com/kirsenkoDanIT/user-auth/issues"
+  },
+  "homepage": "https://github.com/kirsenkoDanIT/user-auth#readme",
+  "dependencies": {
     "concurrently": "^5.0.0"
   }
 }
