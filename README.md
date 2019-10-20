@@ -1,6 +1,6 @@
 # user-auth
 
-[Visit on Heroku](https://user-authorize-app.herokuapp.com/)
+[Visit on Heroku](https://auth-user-test.herokuapp.com/)
 
 ## Used technologies:
 * React
