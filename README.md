@@ -5,7 +5,7 @@
 ## Used technologies:
 * React
 * Redux
-* Saga
+* Redux-Saga
 * JWT
 * Node.js
 * Express
